@@ -25,7 +25,11 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      
+
+      - name: Pub Get
+        run: |
+          flutter pub get
+
       - name: Analyze
         run: |
           flutter analyze
@@ -48,7 +52,11 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      
+
+      - name: Pub Get
+        run: |
+          flutter pub get
+
       - name: Test
         run: |
           flutter test
@@ -67,7 +75,11 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      
+
+      - name: Pub Get
+        run: |
+          flutter pub get
+
       - name: Build Example
         working-directory: example
         run: |
@@ -87,11 +99,15 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      
+  
+      - name: Pub Get
+        run: |
+          flutter pub get
+
       - name: Build Example
         working-directory: example
         run: |
-          flutter build -v ios
+          flutter build -v ios --no-codesign
 
   verify_publish:
     runs-on: ubuntu-latest
@@ -107,13 +123,17 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      
+
+      - name: Pub Get
+        run: |
+          flutter pub get
+
       - name: Publish Dry-Run
         run: |
           flutter pub publish --dry-run
 
       - name: Package Publisher Dry-Run
-        uses: k-paxian/dart-package-publisher@v1.5
+        uses: k-paxian/dart-package-publisher@1.5
         with:
           accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
           refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}

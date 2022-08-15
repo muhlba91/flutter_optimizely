@@ -3,6 +3,8 @@
 [![](https://img.shields.io/github/license/muhlba91/flutter_optimizely?style=for-the-badge)](LICENSE)
 [![](https://img.shields.io/github/workflow/status/muhlba91/flutter_optimizely/Verify?style=for-the-badge)](https://github.com/muhlba91/flutter_optimizely/actions)
 [![](https://img.shields.io/github/release-date/muhlba91/flutter_optimizely?style=for-the-badge)](https://github.com/muhlba91/flutter_optimizely/releases)
+[![](https://img.shields.io/pub/v/flutter_optimizely?style=for-the-badge)](https://pub.dev/packages/flutter_optimizely)
+[![](https://img.shields.io/pub/publisher/niftyside.io?style=for-the-badge)](https://pub.dev/publishers/niftyside.io/packages)
 <a href="https://www.buymeacoffee.com/muhlba91" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="28" width="150"></a>
 
 A Flutter plugin for [Optimizely](http://optimizely.com).
