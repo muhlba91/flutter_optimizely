@@ -143,7 +143,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     name: Release
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[release]')
     needs:
       - analyze
       - test

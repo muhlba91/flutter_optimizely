@@ -7,7 +7,7 @@
 [![](https://img.shields.io/pub/publisher/niftyside.io?style=for-the-badge)](https://pub.dev/publishers/niftyside.io/packages)
 <a href="https://www.buymeacoffee.com/muhlba91" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="28" width="150"></a>
 
-A Flutter plugin for [Optimizely](http://optimizely.com).
+A Flutter plugin for [Optimizely](https://optimizely.com).
 This plugin has been derived from [https://github.com/HomeX-It/optimizely-dart](https://github.com/HomeX-It/optimizely-dart).
 
 ---
