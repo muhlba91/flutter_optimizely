@@ -1,0 +1,12 @@
+{
+  "releaseCommitMessageFormat": "chore(release): release {{currentTag}} [skip ci] [release]",
+  "tagPrefix": "v",
+  "bumpFiles": [
+    {
+      "filename": "pubspec.yaml",
+      "updater": "./.github/workflows/scripts/pubspec-version-updater.js"
+    }
+  ],
+  "packageFiles": [],
+  "header": "# Changelog\n\n"
+}

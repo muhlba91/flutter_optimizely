@@ -1,0 +1,86 @@
+---
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  strong-mode:
+    implicit-dynamic: true
+  errors:
+    deprecated_member_use_from_same_package: ignore
+    sdk_version_async_exported_from_core: ignore
+    depend_on_referenced_packages: ignore
+    invalid_annotation_target: ignore
+  exclude:
+    - "lib/generated_plugin_registrant.dart"
+    - "lib/amplifyconfiguration.dart"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "bin/cache/**"
+    - "test_fixes/**"
+  plugins:
+    - dart_code_metrics
+
+linter:
+  rules:
+    sort_constructors_first: true
+    prefer_single_quotes: true
+    always_specify_types: true
+    prefer_expression_function_bodies: true
+    prefer_foreach: true
+    use_to_and_as_if_applicable: true
+    close_sinks: true
+    cast_nullable_to_non_nullable: false
+
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    maximum-nesting: 5
+    number-of-parameters: 5
+    source-lines-of-code: 75
+  rules:
+    - avoid-global-state
+    - avoid-missing-enum-constant-in-map
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 2
+    - avoid-throw-in-catch-block
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format 
+    - no-boolean-literal-compare
+    - no-empty-block
+    - no-equal-then-else
+    - no-object-declaration
+    - prefer-conditional-expressions 
+    - prefer-correct-identifier-length:
+        min-identifier-length: 2
+        max-identifier-length: 40
+    - prefer-correct-type-name:
+        min-length: 2
+        max-length: 40
+    - prefer-first
+    - prefer-last
+    - prefer-trailing-comma:
+        break-on: 3
+    - always-remove-listener
+    - avoid-unnecessary-setstate
+    - prefer-extracting-callbacks
+    - prefer-single-widget-per-file
+  metrics-exclude:
+    - "lib/generated_plugin_registrant.dart"
+    - "lib/amplifyconfiguration.dart"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "bin/cache/**"
+    - "test_fixes/**"
+  rules-exclude:
+    - "lib/generated_plugin_registrant.dart"
+    - "lib/amplifyconfiguration.dart"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "bin/cache/**"
+    - "test_fixes/**"

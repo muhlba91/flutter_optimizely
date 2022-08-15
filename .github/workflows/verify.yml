@@ -1,0 +1,171 @@
+---
+name: Verify
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - main
+      - next
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    name: Flutter Analyze
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      
+      - name: Analyze
+        run: |
+          flutter analyze
+
+      - name: Dart Code Metrics
+        run: |
+          flutter pub run dart_code_metrics:metrics analyze lib
+
+  test:
+    runs-on: ubuntu-latest
+    name: Flutter Test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      
+      - name: Test
+        run: |
+          flutter test
+
+  android:
+    runs-on: ubuntu-latest
+    name: "Android: Build Example"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      
+      - name: Build Example
+        working-directory: example
+        run: |
+          flutter build -v appbundle
+
+  ios:
+    runs-on: macos-latest
+    name: "iOS: Build Example"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      
+      - name: Build Example
+        working-directory: example
+        run: |
+          flutter build -v ios
+
+  verify_publish:
+    runs-on: ubuntu-latest
+    name: Flutter Publish Verification
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      
+      - name: Publish Dry-Run
+        run: |
+          flutter pub publish --dry-run
+
+      - name: Package Publisher Dry-Run
+        uses: k-paxian/dart-package-publisher@v1.5
+        with:
+          accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
+          refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
+          skipTests: true
+          dryRunOnly: true
+
+  release:
+    runs-on: ubuntu-latest
+    name: Release
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - analyze
+      - test
+      - android
+      - ios
+      - verify_publish
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Git
+        shell: bash
+        run: |
+          git config --local user.email "${{ github.action }}+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git fetch --tags
+          git pull || true
+
+      - name: Versioning and Changelog
+        id: versioning
+        shell: bash
+        run: |
+          npx standard-version -i release-CHANGELOG.md \
+            --skip.commit \
+            --skip.tag \
+            --skip.bump
+          npx standard-version
+          TAG_NAME=`git describe --abbrev=0 --match "v*"`
+          echo ::set-output name=tagName::$(echo ${TAG_NAME})
+      - name: Push Git Tag
+        shell: bash
+        run: |
+          git push --follow-tags origin ${{ github.ref_name }}
+
+      - name: GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          bodyFile: release-CHANGELOG.md
+          name: ${{ steps.versioning.outputs.tagName }}
+          tag: ${{ steps.versioning.outputs.tagName }}
+          token: ${{ secrets.GITHUB_TOKEN }}
