@@ -29,6 +29,9 @@ linter:
     use_to_and_as_if_applicable: true
     close_sinks: true
     cast_nullable_to_non_nullable: false
+    public_member_api_docs: true
+    package_api_docs: true
+    slash_for_doc_comments: true
 
 dart_code_metrics:
   anti-patterns:

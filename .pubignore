@@ -1,3 +1,4 @@
+doc/api/
 build/
 *.iml
 analysis_options.yaml

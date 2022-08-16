@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_optimizely/flutter_optimizely_platform_interface.dart';
 
+/// Platform implementation based on a method channel to communicate with native SDKs.
 class MethodChannelFlutterOptimizely extends FlutterOptimizelyPlatform {
+  /// The method channel used for communication to native SDKs.
   @visibleForTesting
   final MethodChannel methodChannel = const MethodChannel('flutter_optimizely');
 
