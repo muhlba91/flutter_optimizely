@@ -17,15 +17,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-
-      - name: Pub Get
-        run: |
-          flutter pub get
-
       - name: Publish
         uses: k-paxian/dart-package-publisher@1.5
         with:
