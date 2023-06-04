@@ -19,7 +19,8 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
       switch (methodCall.method) {
         case 'init':
           expect(
@@ -30,7 +31,6 @@ void main() {
             methodCall.arguments['periodic_download_interval'],
             periodicDownloadInterval,
           );
-          break;
         case 'initSync':
           expect(
             methodCall.arguments['sdk_key'],
@@ -44,7 +44,6 @@ void main() {
             methodCall.arguments['datafile'],
             datafile,
           );
-          break;
         case 'setUser':
           expect(
             methodCall.arguments['user_id'],
@@ -57,7 +56,6 @@ void main() {
               'key': 'value',
             },
           );
-          break;
         case 'isFeatureEnabled':
           expect(
             methodCall.arguments['feature_key'],
@@ -75,11 +73,13 @@ void main() {
         default:
           break;
       }
+      return null;
     });
   });
 
   tearDown(() {
-    channel.setMockMethodCallHandler(null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
   });
 
   test('init', () async {

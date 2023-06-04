@@ -2,8 +2,6 @@
 include: package:lint/analysis_options.yaml
 
 analyzer:
-  strong-mode:
-    implicit-dynamic: true
   errors:
     deprecated_member_use_from_same_package: ignore
     sdk_version_async_exported_from_core: ignore
