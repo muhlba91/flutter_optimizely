@@ -1,6 +1,8 @@
 # Changelog
 
 
+### [1.2.2](https://github.com/muhlba91/flutter_optimizely/compare/v1.2.1...v1.2.2) (2023-10-23)
+
 ### [1.2.1](https://github.com/muhlba91/flutter_optimizely/compare/v1.2.0...v1.2.1) (2023-09-05)
 
 ## [1.2.0](https://github.com/muhlba91/flutter_optimizely/compare/v1.1.1...v1.2.0) (2023-06-04)
