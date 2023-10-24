@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [1.3.0](https://github.com/muhlba91/flutter_optimizely/compare/v1.2.2...v1.3.0) (2023-10-24)
+
+
+### Features
+
+* add deprecation notice; remove renovate ([9bf67c3](https://github.com/muhlba91/flutter_optimizely/commit/9bf67c33645777abd725d7e291de1d99bfa528f5))
+
 ### [1.2.2](https://github.com/muhlba91/flutter_optimizely/compare/v1.2.1...v1.2.2) (2023-10-23)
 
 ### [1.2.1](https://github.com/muhlba91/flutter_optimizely/compare/v1.2.0...v1.2.1) (2023-09-05)
