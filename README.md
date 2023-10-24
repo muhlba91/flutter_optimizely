@@ -1,5 +1,7 @@
 # flutter_optimizely
 
+**ATTENTION!** This plugin is deprecated and archived. It will **NOT** be updated anymore!
+
 [![](https://img.shields.io/github/license/muhlba91/flutter_optimizely?style=for-the-badge)](LICENSE)
 [![](https://img.shields.io/github/workflow/status/muhlba91/flutter_optimizely/Verify?style=for-the-badge)](https://github.com/muhlba91/flutter_optimizely/actions)
 [![](https://img.shields.io/github/release-date/muhlba91/flutter_optimizely?style=for-the-badge)](https://github.com/muhlba91/flutter_optimizely/releases)
